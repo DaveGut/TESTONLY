@@ -27,10 +27,14 @@ TAPO Robovac Development with login protocol and validated methods and responses
 
 ## Inital test results
 Below are some initial test results of methods with the output data.  Format is METHOD, HTTP STATUS, DEVICE RESPONES.
-* If the HTTP Status is 200, and device response error_code is 0, the response if OK.
+* If the HTTP Status is 200, and device response error_code is 0, the response is OK.
 * If the response error_code is 9999, login again.
 
 ### Explicit results
+
+[command:[method:multipleRequest, params:[requests:[[method:setCleanSuction, params:[suction_level:2, clean_number:2, cistern:1]], [method:getCleanSuction]]]], data:[status:200, response:[result:[responses:[[method:setCleanSuction, error_code:0], [method:getCleanSuction, result:[suction:2, clean_number:2, cistern:1], error_code:0]]], error_code:0]]]
+
+[command:[method:multipleRequest, params:[requests:[[method:setCleanNumber, params:[suction_level:1, clean_number:1, cistern:2]], [method:getCleanNumber]]]], data:[status:200, response:[result:[responses:[[method:setCleanNumber, error_code:0], [method:getCleanNumber, result:[suction:1, clean_number:1, cistern:2], error_code:0]]], error_code:0]]
 
 [command:[method:setDoNotDisturb, params:[s_min:1300, e_min:510, do_not_disturb:true]], data:[status:200, response:[result:[:], error_code:0]]]
 
@@ -108,3 +112,4 @@ Below are some initial test results of methods with the output data.  Format is 
 [command:[method:setCarpetClean, params:[carpet_clean_prefer:normal]], data:[status:200, response:[error_code:0]]]	//Note: carpet_clean_prefer = boost, normal
 
 [command:[method:getChildLockInfo], data:[status:200, response:[result:[child_lock_status:false], error_code:0]]]
+
