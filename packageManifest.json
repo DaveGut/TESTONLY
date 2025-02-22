@@ -6,7 +6,7 @@
   "documentationLink": "https://github.com/DaveGut/tpLink_Hubitat",
   "communityLink": "https://community.hubitat.com/t/tp-link-tapo-devices/121084",
   "dateReleased": "2024-08-04",
-  "releaseNotes": "https://raw.githubusercontent.com/DaveGut/TESTONLY/main/ReleaseNotes.md",
+  "releaseNotes": "https://raw.githubusercontent.com/DaveGut/TESTONLY/main/releaseNotes",
   "licenseFile": "https://raw.githubusercontent.com/DaveGut/TESTONLY/main/LICENSE",
   "apps": [
     {
