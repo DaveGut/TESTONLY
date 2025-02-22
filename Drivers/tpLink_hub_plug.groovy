@@ -3,10 +3,10 @@
 License:  https://github.com/DaveGut/HubitatActive/blob/master/KasaDevices/License.md
 =================================================================================================*/
 metadata {
-	definition (name: "TpLink Hub Motion", namespace: nameSpace(), author: "Dave Gutheinz", 
-				importUrl: "https://raw.githubusercontent.com/DaveGut/tpLink_Hubitat/main/Drivers/tpLink_hub_motion.groovy")
+	definition (name: "TpLink Hub Plug", namespace: nameSpace(), author: "Dave Gutheinz", 
+				importUrl: "https://raw.githubusercontent.com/DaveGut/tpLink_Hubitat/main/Drivers/tpLink_hub_plug.groovy")
 	{
-		capability "Motion Sensor"
+		capability "Battery"
 		attribute "lowBattery", "string"
 		capability "Sensor"
 	}
@@ -15,25 +15,82 @@ metadata {
 	}
 }
 
-def installed() { runIn(1, updated) }
+def installed() { 
+	state.eventType = "digital"
+	runIn(1, updated)
+}
 
 def updated() {
 	Map logData = [method: "updated", commonUpdated: commonUpdated()]
+	state.BETA_VERSION = "This is a beta version of the driver."
 	logInfo(logData)
 }
 
-//	Parse Methods
 def parse_get_device_info(result, data = null) {
 	Map logData = [method: "parse_get_device_info"]
-	def motion = "inactive"
-	if (result.detected) { motion = "active" }
-	updateAttr("motion", motion)
-	logData << [motion: motion]
+	switchParse(result)
+	if (state.fullUpdate) {
+		byte[] plainBytes = result.nickname.decodeBase64()
+		def newLabel = new String(plainBytes)
+		device.setLabel(newLabel)
+		device.updateSetting("syncName",[type:"enum", value: "notSet"])
+		updateAttr("lowBattery", result.is_low.toString())
+		updateAttr("battery", result.battery_percentage)
+		state.fullUpdate = false
+		logData << [newLabel: newLabel, lowBattery: result.at_low_battery, 
+					battery: result.battery_percentage]
+	}
 	logDebug(logData)
 }
 
 
 
+
+
+// ~~~~~ start include (184) davegut.tpLinkCapSwitch ~~~~~
+library ( // library marker davegut.tpLinkCapSwitch, line 1
+	name: "tpLinkCapSwitch", // library marker davegut.tpLinkCapSwitch, line 2
+	namespace: "davegut", // library marker davegut.tpLinkCapSwitch, line 3
+	author: "Compied by Dave Gutheinz", // library marker davegut.tpLinkCapSwitch, line 4
+	description: "Hubitat capability Switch methods", // library marker davegut.tpLinkCapSwitch, line 5
+	category: "utilities", // library marker davegut.tpLinkCapSwitch, line 6
+	documentationLink: "" // library marker davegut.tpLinkCapSwitch, line 7
+) // library marker davegut.tpLinkCapSwitch, line 8
+
+capability "Switch" // library marker davegut.tpLinkCapSwitch, line 10
+
+def on() { setPower(true) } // library marker davegut.tpLinkCapSwitch, line 12
+
+def off() { setPower(false) } // library marker davegut.tpLinkCapSwitch, line 14
+
+def setPower(onOff) { // library marker davegut.tpLinkCapSwitch, line 16
+	state.eventType = "digital" // library marker davegut.tpLinkCapSwitch, line 17
+	logDebug("setPower: [device_on: ${onOff}]") // library marker davegut.tpLinkCapSwitch, line 18
+	List requests = [[ // library marker davegut.tpLinkCapSwitch, line 19
+		method: "set_device_info", // library marker davegut.tpLinkCapSwitch, line 20
+		params: [device_on: onOff]]] // library marker davegut.tpLinkCapSwitch, line 21
+	requests << [method: "get_device_info"] // library marker davegut.tpLinkCapSwitch, line 22
+	sendDevCmd(requests, device.getDeviceNetworkId(), "parseUpdates") // library marker davegut.tpLinkCapSwitch, line 23
+} // library marker davegut.tpLinkCapSwitch, line 24
+
+def switchParse(result) { // library marker davegut.tpLinkCapSwitch, line 26
+	Map logData = [method: "switchParse"] // library marker davegut.tpLinkCapSwitch, line 27
+	if (result.device_on != null) { // library marker davegut.tpLinkCapSwitch, line 28
+		def onOff = "off" // library marker davegut.tpLinkCapSwitch, line 29
+		if (result.device_on == true) { onOff = "on" } // library marker davegut.tpLinkCapSwitch, line 30
+		if (device.currentValue("switch") != onOff) { // library marker davegut.tpLinkCapSwitch, line 31
+			sendEvent(name: "switch", value: onOff, type: state.eventType) // library marker davegut.tpLinkCapSwitch, line 32
+			if (getDataValue("isEm") == "true" && !pollInterval.contains("sec")) { // library marker davegut.tpLinkCapSwitch, line 33
+				runIn(4, refresh) // library marker davegut.tpLinkCapSwitch, line 34
+			} // library marker davegut.tpLinkCapSwitch, line 35
+		} // library marker davegut.tpLinkCapSwitch, line 36
+		state.eventType = "physical" // library marker davegut.tpLinkCapSwitch, line 37
+		logData << [switch: onOff] // library marker davegut.tpLinkCapSwitch, line 38
+	} // library marker davegut.tpLinkCapSwitch, line 39
+	logDebug(logData) // library marker davegut.tpLinkCapSwitch, line 40
+} // library marker davegut.tpLinkCapSwitch, line 41
+
+// ~~~~~ end include (184) davegut.tpLinkCapSwitch ~~~~~
 
 // ~~~~~ start include (186) davegut.tpLinkChildCommon ~~~~~
 library ( // library marker davegut.tpLinkChildCommon, line 1

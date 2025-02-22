@@ -3,32 +3,52 @@
 License:  https://github.com/DaveGut/HubitatActive/blob/master/KasaDevices/License.md
 =================================================================================================*/
 metadata {
-	definition (name: "TpLink Hub Motion", namespace: nameSpace(), author: "Dave Gutheinz", 
-				importUrl: "https://raw.githubusercontent.com/DaveGut/tpLink_Hubitat/main/Drivers/tpLink_hub_motion.groovy")
+	definition (name: "TpLink Hub TRV", namespace: nameSpace(), author: "Dave Gutheinz", 
+				importUrl: "https://raw.githubusercontent.com/DaveGut/tpLink_Hubitat/main/Drivers/tpLink_hub_trv.groovy")
 	{
-		capability "Motion Sensor"
+		capability "Battery"
 		attribute "lowBattery", "string"
-		capability "Sensor"
+		capability "Temperature Measurement"
+		capability "ThermostatHeatingSetpoint"
 	}
 	preferences {
+		input ("frostProtect", "bool", title: "Frost Protect ON", defaultValue: false)
+		input ("maxCtrlTemp", "number", title: "Maximum Control Temperature", defaultValue: 30)
+		input ("minCtrlTemp", "number", title: "Minimum Control Temperature", defaultValue: 5)
+		input ("tempUnit", "Enum",  title: "Temperature Scale", options: ["C", "F"], defaultValue: "C")
 		commonPreferences()
 	}
 }
 
-def installed() { runIn(1, updated) }
-
-def updated() {
-	Map logData = [method: "updated", commonUpdated: commonUpdated()]
+def installed() { 
+	Map logData = [method: "installed",commonInst: commonInstalled()]
 	logInfo(logData)
 }
 
-//	Parse Methods
+def updated() {
+	Map logData = [method: "updated", commonUpdated: commonUpdated()]
+	state.BETA_VERSION = "This is a beta version of the driver."
+	logInfo(logData)
+}
+
 def parse_get_device_info(result, data = null) {
 	Map logData = [method: "parse_get_device_info"]
-	def motion = "inactive"
-	if (result.detected) { motion = "active" }
-	updateAttr("motion", motion)
-	logData << [motion: motion]
+	updateAttr("temperature", result.current_temp)
+	logData << [temperature: result.current_temp]
+	updateAttr("lowBattery", result.at_low_battery.toString())
+	updateAttr("battery", result.battery_percentage)
+	updateAttr("heatingSetpoint", result.target_temp)
+	String tempScale = "C"
+	if (result.current_temp_unit != "celsius") { tempScale = "F" }
+	device.updateSetting("tempUnit", [type:"enum", value: tempScale])
+	device.updateSetting("maxTemp", [type: "number", value: result.max_control_temp])
+	device.updateSetting("minTemp", [type: "number", value: result.min_control_temp])
+	device.updateSetting("frostProtect", [type: "string", value: result.frost_protect_on])
+	state.fullUpdate = false
+	logData << [tempScale: tempScale, lowBattery: result.at_low_battery,
+				battery: result.battery_percentage,maxTemp: result.max_control_temp,
+				minTemp: result.min_control_temp, heatingSetpoint: result.target_temp,
+				frostProtect: result.frost_protect_on]
 	logDebug(logData)
 }
 
