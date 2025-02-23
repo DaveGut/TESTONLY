@@ -42,7 +42,7 @@ Level
 
 
 
-// ~~~~~ start include (184) davegut.tpLinkCapSwitch ~~~~~
+// ~~~~~ start include (198) davegut.tpLinkCapSwitch ~~~~~
 library ( // library marker davegut.tpLinkCapSwitch, line 1
 	name: "tpLinkCapSwitch", // library marker davegut.tpLinkCapSwitch, line 2
 	namespace: "davegut", // library marker davegut.tpLinkCapSwitch, line 3
@@ -85,9 +85,9 @@ def switchParse(result) { // library marker davegut.tpLinkCapSwitch, line 26
 	logDebug(logData) // library marker davegut.tpLinkCapSwitch, line 40
 } // library marker davegut.tpLinkCapSwitch, line 41
 
-// ~~~~~ end include (184) davegut.tpLinkCapSwitch ~~~~~
+// ~~~~~ end include (198) davegut.tpLinkCapSwitch ~~~~~
 
-// ~~~~~ start include (185) davegut.tpLinkCapSwitchLevel ~~~~~
+// ~~~~~ start include (199) davegut.tpLinkCapSwitchLevel ~~~~~
 library ( // library marker davegut.tpLinkCapSwitchLevel, line 1
 	name: "tpLinkCapSwitchLevel", // library marker davegut.tpLinkCapSwitchLevel, line 2
 	namespace: "davegut", // library marker davegut.tpLinkCapSwitchLevel, line 3
@@ -229,9 +229,9 @@ def levelParse(result) { // library marker davegut.tpLinkCapSwitchLevel, line 13
 	logDebug(logData) // library marker davegut.tpLinkCapSwitchLevel, line 139
 } // library marker davegut.tpLinkCapSwitchLevel, line 140
 
-// ~~~~~ end include (185) davegut.tpLinkCapSwitchLevel ~~~~~
+// ~~~~~ end include (199) davegut.tpLinkCapSwitchLevel ~~~~~
 
-// ~~~~~ start include (191) davegut.tpLinkCapEngMon ~~~~~
+// ~~~~~ start include (197) davegut.tpLinkCapEngMon ~~~~~
 library ( // library marker davegut.tpLinkCapEngMon, line 1
 	name: "tpLinkCapEngMon", // library marker davegut.tpLinkCapEngMon, line 2
 	namespace: "davegut", // library marker davegut.tpLinkCapEngMon, line 3
@@ -280,9 +280,9 @@ def parse_get_device_usage(result, data) { // library marker davegut.tpLinkCapEn
 	logDebug(logData) // library marker davegut.tpLinkCapEngMon, line 46
 } // library marker davegut.tpLinkCapEngMon, line 47
 
-// ~~~~~ end include (191) davegut.tpLinkCapEngMon ~~~~~
+// ~~~~~ end include (197) davegut.tpLinkCapEngMon ~~~~~
 
-// ~~~~~ start include (186) davegut.tpLinkChildCommon ~~~~~
+// ~~~~~ start include (200) davegut.tpLinkChildCommon ~~~~~
 library ( // library marker davegut.tpLinkChildCommon, line 1
 	name: "tpLinkChildCommon", // library marker davegut.tpLinkChildCommon, line 2
 	namespace: "davegut", // library marker davegut.tpLinkChildCommon, line 3
@@ -379,9 +379,9 @@ def sendSingleCmd(request, data, action) { // library marker davegut.tpLinkChild
 	parent.asyncSend(cmdBody, device.getDeviceNetworkId(), action) // library marker davegut.tpLinkChildCommon, line 94
 } // library marker davegut.tpLinkChildCommon, line 95
 
-// ~~~~~ end include (186) davegut.tpLinkChildCommon ~~~~~
+// ~~~~~ end include (200) davegut.tpLinkChildCommon ~~~~~
 
-// ~~~~~ start include (182) davegut.Logging ~~~~~
+// ~~~~~ start include (195) davegut.Logging ~~~~~
 library ( // library marker davegut.Logging, line 1
 	name: "Logging", // library marker davegut.Logging, line 2
 	namespace: "davegut", // library marker davegut.Logging, line 3
@@ -393,7 +393,7 @@ library ( // library marker davegut.Logging, line 1
 
 def nameSpace() { return "davegut" } // library marker davegut.Logging, line 10
 
-def version() { return "2.4.0c" } // library marker davegut.Logging, line 12
+def version() { return "2.4.1a" } // library marker davegut.Logging, line 12
 
 def label() { // library marker davegut.Logging, line 14
 	if (device) {  // library marker davegut.Logging, line 15
@@ -450,4 +450,4 @@ def logWarn(msg) { log.warn "${label()}: ${msg}" } // library marker davegut.Log
 
 def logError(msg) { log.error "${label()}: ${msg}" } // library marker davegut.Logging, line 67
 
-// ~~~~~ end include (182) davegut.Logging ~~~~~
+// ~~~~~ end include (195) davegut.Logging ~~~~~

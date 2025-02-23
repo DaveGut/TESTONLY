@@ -106,7 +106,7 @@ def parse_get_alarm_configure(result, data) {
 
 
 
-// ~~~~~ start include (188) davegut.tpLinkCommon ~~~~~
+// ~~~~~ start include (202) davegut.tpLinkCommon ~~~~~
 library ( // library marker davegut.tpLinkCommon, line 1
 	name: "tpLinkCommon", // library marker davegut.tpLinkCommon, line 2
 	namespace: "davegut", // library marker davegut.tpLinkCommon, line 3
@@ -486,9 +486,9 @@ def parseCommsTest(resp, data = null) { // library marker davegut.tpLinkCommon, 
 	} // library marker davegut.tpLinkCommon, line 377
 } // library marker davegut.tpLinkCommon, line 378
 
-// ~~~~~ end include (188) davegut.tpLinkCommon ~~~~~
+// ~~~~~ end include (202) davegut.tpLinkCommon ~~~~~
 
-// ~~~~~ start include (187) davegut.tpLinkParentCommon ~~~~~
+// ~~~~~ start include (201) davegut.tpLinkParentCommon ~~~~~
 library ( // library marker davegut.tpLinkParentCommon, line 1
 	name: "tpLinkParentCommon", // library marker davegut.tpLinkParentCommon, line 2
 	namespace: "davegut", // library marker davegut.tpLinkParentCommon, line 3
@@ -653,9 +653,9 @@ def parse_get_child_device_list(result, data) { // library marker davegut.tpLink
 	logDebug(logData) // library marker davegut.tpLinkParentCommon, line 162
 } // library marker davegut.tpLinkParentCommon, line 163
 
-// ~~~~~ end include (187) davegut.tpLinkParentCommon ~~~~~
+// ~~~~~ end include (201) davegut.tpLinkParentCommon ~~~~~
 
-// ~~~~~ start include (189) davegut.tpLinkComms ~~~~~
+// ~~~~~ start include (203) davegut.tpLinkComms ~~~~~
 library ( // library marker davegut.tpLinkComms, line 1
 	name: "tpLinkComms", // library marker davegut.tpLinkComms, line 2
 	namespace: "davegut", // library marker davegut.tpLinkComms, line 3
@@ -849,9 +849,9 @@ private sendFindCmd(ip, port, cmdData, action, commsTo = 5, ignore = false) { //
 	return // library marker davegut.tpLinkComms, line 191
 } // library marker davegut.tpLinkComms, line 192
 
-// ~~~~~ end include (189) davegut.tpLinkComms ~~~~~
+// ~~~~~ end include (203) davegut.tpLinkComms ~~~~~
 
-// ~~~~~ start include (190) davegut.tpLinkCrypto ~~~~~
+// ~~~~~ start include (204) davegut.tpLinkCrypto ~~~~~
 library ( // library marker davegut.tpLinkCrypto, line 1
 	name: "tpLinkCrypto", // library marker davegut.tpLinkCrypto, line 2
 	namespace: "davegut", // library marker davegut.tpLinkCrypto, line 3
@@ -1215,9 +1215,9 @@ def getRsaKey() { // library marker davegut.tpLinkCrypto, line 359
 			private: "MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAoGBAMav+YcErxqrHtQBL6D5O4C8TcnYN3CypGf0yYCSM8Y2ifVmXAzqctAd8kd5t2iHJWqQ1ZoIQIZed+2eULwIzZz9G6O8KtK1EDSVUP6OLE71An09xhNrTtnUW4TN7tDk4hrqkSg/GiauPHNWVRYsNe33TWoJ2ff/NFmkF2lfNVm1AgMBAAECgYEAocxCHmKBGe2KAEkq+SKdAxvVGO77TsobOhDMWug0Q1C8jduaUGZHsxT/7JbA9d1AagSh/XqE2Sdq8FUBF+7vSFzozBHyGkrX1iKURpQFEQM2j9JgUCucEavnxvCqDYpscyNRAgqz9jdh+BjEMcKAG7o68bOw41ZC+JyYR41xSe0CQQD1os71NcZiMVqYcBud6fTYFHZz3HBNcbzOk+RpIHyi8aF3zIqPKIAh2pO4s7vJgrMZTc2wkIe0ZnUrm0oaC//jAkEAzxIPW1mWd3+KE3gpgyX0cFkZsDmlIbWojUIbyz8NgeUglr+BczARG4ITrTV4fxkGwNI4EZxBT8vXDSIXJ8NDhwJBAIiKndx0rfg7Uw7VkqRvPqk2hrnU2aBTDw8N6rP9WQsCoi0DyCnX65Hl/KN5VXOocYIpW6NAVA8VvSAmTES6Ut0CQQCX20jD13mPfUsHaDIZafZPhiheoofFpvFLVtYHQeBoCF7T7vHCRdfl8oj3l6UcoH/hXMmdsJf9KyI1EXElyf91AkAvLfmAS2UvUnhX4qyFioitjxwWawSnf+CewN8LDbH7m5JVXJEh3hqp+aLHg1EaW4wJtkoKLCF+DeVIgbSvOLJw"] // library marker davegut.tpLinkCrypto, line 361
 } // library marker davegut.tpLinkCrypto, line 362
 
-// ~~~~~ end include (190) davegut.tpLinkCrypto ~~~~~
+// ~~~~~ end include (204) davegut.tpLinkCrypto ~~~~~
 
-// ~~~~~ start include (182) davegut.Logging ~~~~~
+// ~~~~~ start include (195) davegut.Logging ~~~~~
 library ( // library marker davegut.Logging, line 1
 	name: "Logging", // library marker davegut.Logging, line 2
 	namespace: "davegut", // library marker davegut.Logging, line 3
@@ -1229,7 +1229,7 @@ library ( // library marker davegut.Logging, line 1
 
 def nameSpace() { return "davegut" } // library marker davegut.Logging, line 10
 
-def version() { return "2.4.0c" } // library marker davegut.Logging, line 12
+def version() { return "2.4.1a" } // library marker davegut.Logging, line 12
 
 def label() { // library marker davegut.Logging, line 14
 	if (device) {  // library marker davegut.Logging, line 15
@@ -1286,4 +1286,4 @@ def logWarn(msg) { log.warn "${label()}: ${msg}" } // library marker davegut.Log
 
 def logError(msg) { log.error "${label()}: ${msg}" } // library marker davegut.Logging, line 67
 
-// ~~~~~ end include (182) davegut.Logging ~~~~~
+// ~~~~~ end include (195) davegut.Logging ~~~~~

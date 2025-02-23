@@ -258,7 +258,7 @@ def parseVacAesData(resp) {
 
 
 
-// ~~~~~ start include (188) davegut.tpLinkCommon ~~~~~
+// ~~~~~ start include (202) davegut.tpLinkCommon ~~~~~
 library ( // library marker davegut.tpLinkCommon, line 1
 	name: "tpLinkCommon", // library marker davegut.tpLinkCommon, line 2
 	namespace: "davegut", // library marker davegut.tpLinkCommon, line 3
@@ -638,9 +638,9 @@ def parseCommsTest(resp, data = null) { // library marker davegut.tpLinkCommon, 
 	} // library marker davegut.tpLinkCommon, line 377
 } // library marker davegut.tpLinkCommon, line 378
 
-// ~~~~~ end include (188) davegut.tpLinkCommon ~~~~~
+// ~~~~~ end include (202) davegut.tpLinkCommon ~~~~~
 
-// ~~~~~ start include (189) davegut.tpLinkComms ~~~~~
+// ~~~~~ start include (203) davegut.tpLinkComms ~~~~~
 library ( // library marker davegut.tpLinkComms, line 1
 	name: "tpLinkComms", // library marker davegut.tpLinkComms, line 2
 	namespace: "davegut", // library marker davegut.tpLinkComms, line 3
@@ -834,9 +834,9 @@ private sendFindCmd(ip, port, cmdData, action, commsTo = 5, ignore = false) { //
 	return // library marker davegut.tpLinkComms, line 191
 } // library marker davegut.tpLinkComms, line 192
 
-// ~~~~~ end include (189) davegut.tpLinkComms ~~~~~
+// ~~~~~ end include (203) davegut.tpLinkComms ~~~~~
 
-// ~~~~~ start include (182) davegut.Logging ~~~~~
+// ~~~~~ start include (195) davegut.Logging ~~~~~
 library ( // library marker davegut.Logging, line 1
 	name: "Logging", // library marker davegut.Logging, line 2
 	namespace: "davegut", // library marker davegut.Logging, line 3
@@ -848,7 +848,7 @@ library ( // library marker davegut.Logging, line 1
 
 def nameSpace() { return "davegut" } // library marker davegut.Logging, line 10
 
-def version() { return "2.4.0c" } // library marker davegut.Logging, line 12
+def version() { return "2.4.1a" } // library marker davegut.Logging, line 12
 
 def label() { // library marker davegut.Logging, line 14
 	if (device) {  // library marker davegut.Logging, line 15
@@ -905,4 +905,4 @@ def logWarn(msg) { log.warn "${label()}: ${msg}" } // library marker davegut.Log
 
 def logError(msg) { log.error "${label()}: ${msg}" } // library marker davegut.Logging, line 67
 
-// ~~~~~ end include (182) davegut.Logging ~~~~~
+// ~~~~~ end include (195) davegut.Logging ~~~~~
